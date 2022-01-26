@@ -62,7 +62,9 @@ jobs:
         with:
           name: coverageFile
       # Create report and upload it
-      - name: "Create xml report"
+      - name: "Create coverage report"
+        run: coverage report
+      - name: "Make xml report"
         run: coverage xml
       - name: "Upload xml report"
         uses: actions/upload-artifact@v2
