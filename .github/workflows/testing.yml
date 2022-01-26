@@ -41,12 +41,14 @@ jobs:
       - name: "Hand .coverage file to next test"
         uses: actions/upload-artifact@v2
         with:
-          name: coverage_file
+          name: coverageFile
           path: .coverage
           retention-days: 1
 
   coverage_report:
     runs-on: ubuntu-latest
+    # Avoid parallel execution of jobs.
+    needs: test
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -58,7 +60,7 @@ jobs:
       - name: "Get .coverage file from last test"
         uses: actions/download-artifact@v2
         with:
-          name: coverage_file
+          name: coverageFile
       # Create report and upload it
       - name: "Create xml report"
         run: coverage xml
