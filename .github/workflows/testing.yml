@@ -46,3 +46,28 @@ jobs:
           retention-days: 1
         #run: coverage html
         #run: coverage run -m unittest
+
+    coverage_report:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-python@v2
+          with:
+            python-version: '3.8.10'
+        # Install prerequesites for coverage report
+        - name: "Install coverage"
+          run: pip install coverage
+        - name: "Get .coverage file from last test"
+          uses: actions/upload-artifact@v2
+          with:
+            name: coverage_file
+        - name: "Create coverage report"
+          run: coverage report
+        - name: "Create xml report"
+          run: coverage xml
+        - name: "Upload xml report"
+          uses: actions/upload-artifact@v2
+          with:
+            name: xml_coverage_report
+            path: coverage.xml
+            retention-days: 14
