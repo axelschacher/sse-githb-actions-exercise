@@ -60,8 +60,6 @@ jobs:
         with:
           name: coverage_file
       # Create report and upload it
-      - name: "Create coverage report"
-        run: coverage report
       - name: "Create xml report"
         run: coverage xml
       - name: "Upload xml report"
