@@ -32,8 +32,6 @@ jobs:
         run: pip install matplotlib
       - name: "Install pytest"
         run: pip install pytest
-      - name: "Install unittest"
-        run: pip install unittest
       - name: "Install coverage"
         run: pip install coverage
       - name: "Run pytest"
